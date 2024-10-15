@@ -2,10 +2,10 @@ use starknet::ContractAddress;
 
 use snforge_std::{declare, ContractClassTrait, DeclareResultTrait};
 
-use bookstore::IHelloStarknetSafeDispatcher;
-use bookstore::IHelloStarknetSafeDispatcherTrait;
-use bookstore::IHelloStarknetDispatcher;
-use bookstore::IHelloStarknetDispatcherTrait;
+use bookstore::IBookstoreSafeDispatcher;
+use bookstore::IBookstoreSafeDispatcherTrait;
+use bookstore::IBookstoreDispatcher;
+use bookstore::IBookstoreDispatcherTrait;
 
 fn deploy_contract(name: ByteArray) -> ContractAddress {
     let contract = declare(name).unwrap().contract_class();
@@ -15,9 +15,8 @@ fn deploy_contract(name: ByteArray) -> ContractAddress {
 
 #[test]
 fn test_increase_balance() {
-    let contract_address = deploy_contract("HelloStarknet");
-
-    let dispatcher = IHelloStarknetDispatcher { contract_address };
+    let contract_address = deploy_contract("BookstoreContract");
+    let dispatcher = IBookstoreDispatcher { contract_address };
 
     let balance_before = dispatcher.get_balance();
     assert(balance_before == 0, 'Invalid balance');
@@ -31,9 +30,8 @@ fn test_increase_balance() {
 #[test]
 #[feature("safe_dispatcher")]
 fn test_cannot_increase_balance_with_zero_value() {
-    let contract_address = deploy_contract("HelloStarknet");
-
-    let safe_dispatcher = IHelloStarknetSafeDispatcher { contract_address };
+    let contract_address = deploy_contract("BookstoreContract");
+    let dispatcher = IBookstoreSafeDispatcher { contract_address };
 
     let balance_before = safe_dispatcher.get_balance().unwrap();
     assert(balance_before == 0, 'Invalid balance');
