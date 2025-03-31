@@ -1,0 +1,5 @@
+Bookstore Contract
+
+Contract deployment transaction: 0x0521e309646c64d5b3e4aa9d2d5c75886b1d0d632ef67883ed458c991e751636
+Contract deployed at:
+0x03af4bd17d75ded7eb9322a3d5dfbcc76310498dd53827b88ca40d38d9512985
